@@ -1,4 +1,5 @@
 const BASE_URL = "https://dummyjson.com/products";
+
 // Fetch products with search, category and pagination
 export async function getProducts({
   page = 1,
