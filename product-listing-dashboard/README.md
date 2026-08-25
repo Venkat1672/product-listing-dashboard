@@ -1,8 +1,10 @@
 # Product Listing Dashboard
 
-A React-based Product Listing Dashboard built using the DummyJSON REST API.
+A React-based product listing dashboard using the DummyJSON REST API.
 
-The application allows users to browse products, search products, filter products by category, navigate through pages, and view detailed product information.
+## 🚀 Live Demo
+
+👉 [View Live Project](https://product-listing-dashboard-vercel.vercel.app)
 
 ## Features
 
