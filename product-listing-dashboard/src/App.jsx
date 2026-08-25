@@ -13,188 +13,219 @@ import {
 } from "./services/productService";
 
 function App() {
-  // Product data
-  const [products, setProducts] = useState([]);
+  // -----------------------------
+  // STATE
+  // -----------------------------
 
-  // Categories
+  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  // Loading state
-  const [loading, setLoading] = useState(true);
-
-  // Error state
-  const [error, setError] = useState("");
-
-  // Search state
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
-  // Category state
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  // Pagination
   const [page, setPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
 
-  // Selected product for modal
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Products per page
   const limit = 12;
 
-  // Calculate number of pages
-  const totalPages = Math.ceil(totalProducts / limit);
 
-  // Fetch products
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      setError("");
+  // -----------------------------
+  // DEBOUNCE SEARCH
+  // -----------------------------
 
-      const data = await getProducts({
-        page,
-        limit,
-        search,
-        category: selectedCategory,
-      });
-
-      setProducts(data.products || []);
-      setTotalProducts(data.total || 0);
-    } catch (error) {
-      console.error(error);
-
-      setProducts([]);
-      setTotalProducts(0);
-      setError("Something went wrong while loading products.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Fetch categories
-  const fetchCategories = async () => {
-    try {
-      const data = await getCategories();
-      setCategories(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // Load products when page/search/category changes
   useEffect(() => {
-    fetchProducts();
-  }, [page, search, selectedCategory]);
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
 
-  // Load categories once
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [search]);
+
+
+  // -----------------------------
+  // GET CATEGORIES
+  // -----------------------------
+
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories();
+
+        setCategories(data || []);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchCategories();
   }, []);
 
-  // Search handler
-  const handleSearch = (value) => {
-    setSearch(value);
-    setPage(1);
-  };
 
-  // Category handler
-  const handleCategoryChange = (value) => {
-    setSelectedCategory(value);
-    setSearch("");
-    setPage(1);
-  };
+  // -----------------------------
+  // GET PRODUCTS
+  // -----------------------------
 
-  // Pagination handler
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        setError("");
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+        const data = await getProducts({
+          page,
+          limit,
+          search: debouncedSearch,
+          category: selectedCategory,
+        });
 
-  // Retry handler
-  const handleRetry = () => {
+        setProducts(data.products || []);
+        setTotalProducts(data.total || 0);
+
+      } catch (error) {
+        console.error(error);
+
+        setProducts([]);
+        setTotalProducts(0);
+
+        setError(
+          "Failed to load products. Please try again."
+        );
+
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
+
+  }, [page, debouncedSearch, selectedCategory]);
+
+
+  // -----------------------------
+  // SEARCH CHANGE
+  // -----------------------------
+
+  const handleSearchChange = (value) => {
+    setSearch(value);
+
+    // Go back to first page
+    // when searching
+    setPage(1);
   };
+
+
+  // -----------------------------
+  // CATEGORY CHANGE
+  // -----------------------------
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+
+    // Go back to first page
+    // when category changes
+    setPage(1);
+  };
+
+
+  // -----------------------------
+  // PAGINATION
+  // -----------------------------
+
+  const totalPages = Math.ceil(
+    totalProducts / limit
+  );
+
+
+  // -----------------------------
+  // RENDER
+  // -----------------------------
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="header-content">
-          <h1>Product Listing Dashboard</h1>
 
-          <p>
-            Explore products using the DummyJSON REST API
-          </p>
-        </div>
+      {/* HEADER */}
+
+      <header className="header">
+
+        <h1>
+          Product Listing Dashboard
+        </h1>
+
+        <p>
+          Explore products using the DummyJSON REST API
+        </p>
+
       </header>
 
-      <main className="container">
-        <section className="controls">
-          <SearchBar
-            search={search}
-            onSearch={handleSearch}
-          />
 
-          <CategoryFilter
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={handleCategoryChange}
-          />
-        </section>
+      {/* SEARCH + CATEGORY */}
 
-        {loading && <Loader />}
+      <div className="filters">
 
-        {!loading && error && (
-          <div className="error-container">
-            <h2>Oops!</h2>
+        <SearchBar
+          search={search}
+          setSearch={handleSearchChange}
+        />
 
-            <p>{error}</p>
+        <CategoryFilter
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={handleCategoryChange}
+        />
 
-            <button onClick={handleRetry}>
-              Retry
-            </button>
-          </div>
-        )}
+      </div>
 
-        {!loading &&
-          !error &&
-          products.length === 0 && (
-            <div className="empty-container">
-              <h2>No products found</h2>
 
-              <p>
-                Try searching for something else or choose
-                another category.
-              </p>
-            </div>
-          )}
+      {/* ERROR */}
 
-        {!loading &&
-          !error &&
-          products.length > 0 && (
-            <>
-              <ProductGrid
-                products={products}
-                onViewDetails={setSelectedProduct}
-              />
+      {error && (
+        <div className="error">
+          {error}
+        </div>
+      )}
 
-              {totalPages > 1 && (
-                <Pagination
-                  page={page}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
-                />
-              )}
-            </>
-          )}
-      </main>
 
-      <ProductModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-      />
+      {/* LOADING */}
+
+      {loading ? (
+        <Loader />
+      ) : (
+        <ProductGrid
+          products={products}
+          onProductClick={setSelectedProduct}
+        />
+      )}
+
+
+      {/* PAGINATION */}
+
+      {!loading && products.length > 0 && (
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+        />
+      )}
+
+
+      {/* PRODUCT MODAL */}
+
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
+
     </div>
   );
 }
