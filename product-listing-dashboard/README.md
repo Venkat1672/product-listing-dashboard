@@ -1,21 +1,22 @@
 # Product Listing Dashboard
 
-A React product listing dashboard built using the DummyJSON REST API.
+A React-based Product Listing Dashboard built using the DummyJSON REST API.
+
+The application allows users to browse products, search products, filter products by category, navigate through pages, and view detailed product information.
 
 ## Features
 
-- Product listing from REST API
-- Async/await API handling
+- Product listing
+- Product search
+- Category filtering
+- Pagination
+- Product details modal
 - Loading state
 - Error handling
-- Retry button
-- Search products
-- Category filtering
-- API-based pagination
-- Product details modal
-- Image fallback handling
 - Empty state
-- Responsive design
+- Retry functionality
+- Responsive UI
+- API integration using DummyJSON
 
 ## Technologies Used
 
@@ -25,56 +26,29 @@ A React product listing dashboard built using the DummyJSON REST API.
 - Vite
 - REST API
 - DummyJSON API
+- Git
+- GitHub
 
 ## API
 
-This project uses the DummyJSON Products API:
+This project uses the DummyJSON REST API.
+
+API:
 
 https://dummyjson.com/products
 
-## API Handling Approach
-
-API-related logic is separated into:
-
-`src/services/productService.js`
-
-The application uses async/await and the Fetch API to communicate with the REST API.
-
-The application handles:
-
-- Loading
-- Success
-- Error
-- Empty results
-- Retry
-
-## State Management
-
-React `useState` is used to manage:
-
-- Products
-- Loading state
-- Error state
-- Search term
-- Selected category
-- Current page
-- Total products
-- Selected product
-
-React `useEffect` is used to fetch data when the page, search term, or category changes.
-
-## Component Structure
+## Project Structure
 
 ```text
 src/
 ├── components/
+│   ├── CategoryFilter.jsx
+│   ├── Loader.jsx
+│   ├── Pagination.jsx
 │   ├── ProductCard.jsx
 │   ├── ProductGrid.jsx
-│   ├── Searchbar.jsx
-│   ├── CategoryFilter.jsx
-│   ├── Pagination.jsx
 │   ├── ProductModal.jsx
-│   └── Loader.jsx
+│   └── Searchbar.jsx
 │
 ├── services/
 │   └── productService.js
