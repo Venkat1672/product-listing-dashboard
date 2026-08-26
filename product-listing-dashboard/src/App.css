@@ -1488,3 +1488,3341 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+/* ========================================
+   GLOBAL
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f9;
+  color: #222;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+/* ========================================
+   MAIN APP
+======================================== */
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #172554,
+    #2563eb
+  );
+
+  color: white;
+
+  padding: 55px 30px 60px;
+
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 48px;
+  font-weight: 700;
+
+  margin-bottom: 15px;
+}
+
+.header p {
+  font-size: 17px;
+  opacity: 0.95;
+}
+
+
+/* ========================================
+   FILTER CONTAINER
+======================================== */
+
+/*
+  All 3 controls are kept inside
+  ONE single white container.
+*/
+
+.controls {
+  width: calc(100% - 40px);
+  max-width: 1450px;
+
+  margin: -30px auto 35px;
+
+  padding: 20px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr 1fr;
+
+  gap: 15px;
+
+  position: relative;
+
+  z-index: 10;
+}
+
+
+/* ========================================
+   SEARCH
+======================================== */
+
+.controls input {
+  width: 100%;
+
+  height: 52px;
+
+  padding: 0 16px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+.controls input::placeholder {
+  color: #6b7280;
+}
+
+.controls input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ========================================
+   CATEGORY SELECT
+======================================== */
+
+.controls select {
+  width: 100%;
+
+  height: 52px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.controls select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ========================================
+   SORT SELECT
+======================================== */
+
+.sort-select {
+  width: 100%;
+
+  height: 52px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.error-container {
+  width: calc(100% - 40px);
+  max-width: 1450px;
+
+  margin: 20px auto;
+
+  padding: 20px;
+
+  background: #fee2e2;
+
+  color: #b91c1c;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.error-container p {
+  margin-bottom: 12px;
+}
+
+.error-container button {
+  padding: 9px 18px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: #dc2626;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+
+/* ========================================
+   PRODUCT GRID
+======================================== */
+
+/*
+  IMPORTANT:
+  4 products in one row.
+*/
+
+.product-grid {
+  width: calc(100% - 40px);
+
+  max-width: 1450px;
+
+  margin: 0 auto 40px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+
+/* ========================================
+   PRODUCT CARD
+======================================== */
+
+.product-card {
+  width: 100%;
+
+  background: white;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  border: 1px solid #dfe5e2;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.07);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  cursor: pointer;
+
+  min-width: 0;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ========================================
+   PRODUCT IMAGE
+======================================== */
+
+/*
+  This is the important part for your
+  "compressed/cut image" problem.
+
+  The image gets a fixed area and
+  object-fit: contain keeps the COMPLETE
+  product visible.
+*/
+
+.product-card img {
+  width: 100%;
+
+  height: 300px;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  display: block;
+
+  background: #f8fafc;
+}
+
+
+/* ========================================
+   PRODUCT CONTENT
+======================================== */
+
+.product-card-content {
+  padding: 18px 20px 20px;
+
+  background: white;
+}
+
+.product-card h3 {
+  font-size: 19px;
+
+  line-height: 1.3;
+
+  margin-bottom: 9px;
+
+  color: #111827;
+}
+
+.product-card p {
+  color: #4b5563;
+
+  font-size: 16px;
+
+  line-height: 1.45;
+
+  margin-bottom: 12px;
+}
+
+
+/* ========================================
+   CATEGORY BADGE
+======================================== */
+
+.product-card .category {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+
+  background: #e5f5f1;
+
+  color: #007c72;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   PRICE
+======================================== */
+
+.product-card .price {
+  font-size: 18px;
+
+  font-weight: 700;
+
+  color: #111827;
+}
+
+
+/* ========================================
+   VIEW DETAILS BUTTON
+======================================== */
+
+.product-card button {
+  width: 100%;
+
+  height: 47px;
+
+  margin-top: 14px;
+
+  border: 1px solid #d1ddd9;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #006f67;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.product-card button:hover {
+  background: #006f67;
+
+  color: white;
+}
+
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.empty-state {
+  width: calc(100% - 40px);
+
+  max-width: 1450px;
+
+  margin: 50px auto;
+
+  padding: 50px;
+
+  text-align: center;
+
+  background: white;
+
+  border-radius: 12px;
+
+  border: 1px solid #e5e7eb;
+}
+
+.empty-state h2 {
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #6b7280;
+}
+
+
+/* ========================================
+   PAGINATION
+======================================== */
+
+.pagination {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin: 35px 0 50px;
+}
+
+.pagination button {
+  min-width: 40px;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 7px;
+
+  background: white;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.pagination button:hover {
+  background: #2563eb;
+
+  color: white;
+
+  border-color: #2563eb;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   LOADER
+======================================== */
+
+.loader {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 60px;
+
+  font-size: 18px;
+
+  color: #2563eb;
+}
+
+
+/* ========================================
+   MODAL
+======================================== */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: 90%;
+
+  max-width: 600px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 25px;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1100px) {
+
+  .product-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .controls {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+}
+
+
+/* ========================================
+   SMALL TABLET
+======================================== */
+
+@media (max-width: 800px) {
+
+  .header {
+    padding: 45px 20px 55px;
+  }
+
+  .header h1 {
+    font-size: 38px;
+  }
+
+  .controls {
+    width: calc(100% - 30px);
+
+    grid-template-columns: 1fr;
+
+    margin-top: -25px;
+  }
+
+  .product-grid {
+    width: calc(100% - 30px);
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+  }
+
+  .product-card img {
+    height: 250px;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 520px) {
+
+  .header {
+    padding: 35px 15px 45px;
+  }
+
+  .header h1 {
+    font-size: 30px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .controls {
+    width: calc(100% - 20px);
+
+    padding: 15px;
+
+    gap: 12px;
+  }
+
+  .controls input,
+  .controls select,
+  .sort-select {
+    height: 48px;
+
+    font-size: 15px;
+  }
+
+  .product-grid {
+    width: calc(100% - 20px);
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .product-card img {
+    height: 280px;
+  }
+
+  .product-card-content {
+    padding: 16px;
+  }
+
+  .product-card h3 {
+    font-size: 18px;
+  }
+}
+.controls input {
+  width: 100%;
+  height: 52px;
+
+  /* Space for the search icon */
+  padding: 0 16px 0 42px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  background: white;
+  color: #111827;
+
+  font-size: 16px;
+  outline: none;
+}
+
+.controls input::placeholder {
+  color: #6b7280;
+}
+
+.controls input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+.product-card img {
+  width: 100%;
+  height: 330px;
+
+  object-fit: contain;
+  object-position: center center;
+
+  display: block;
+
+  background: #f8fafc;
+
+  /* Prevent the image from being squeezed */
+  max-width: 100%;
+}
+.product-card {
+  overflow: hidden;
+}
+
+.product-card img {
+  flex-shrink: 0;
+}
+.product-card img {
+  height: 280px;
+}
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7f6;
+  color: #111827;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   MAIN APP
+========================================================= */
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+  width: 100%;
+
+  background: linear-gradient(
+    135deg,
+    #172554,
+    #2563eb
+  );
+
+  color: white;
+
+  padding: 35px 30px 110px;
+
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 44px;
+  font-weight: 700;
+
+  margin-bottom: 14px;
+}
+
+.header p {
+  font-size: 16px;
+
+  opacity: 0.95;
+}
+
+
+/* =========================================================
+   FILTERS CONTAINER
+========================================================= */
+
+.filters {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: -55px auto 35px;
+
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  background: white;
+
+  border: 1px solid #e1e7e5;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08);
+
+  position: relative;
+  z-index: 10;
+}
+
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+.filters input {
+  flex: 1;
+
+  width: 100%;
+  min-width: 0;
+
+  height: 52px;
+
+  padding: 0 16px;
+
+  border: 1px solid #d5dfdc;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+.filters input::placeholder {
+  color: #6b7280;
+}
+
+.filters input:focus {
+  border-color: #0f766e;
+
+  box-shadow:
+    0 0 0 2px rgba(15, 118, 110, 0.12);
+}
+
+
+/* =========================================================
+   SELECT BOXES
+========================================================= */
+
+.filters select {
+  flex: 1;
+
+  width: 100%;
+  min-width: 0;
+
+  height: 52px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d5dfdc;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.filters select:focus {
+  border-color: #0f766e;
+
+  box-shadow:
+    0 0 0 2px rgba(15, 118, 110, 0.12);
+}
+
+
+/* =========================================================
+   SEARCH / FILTER ICON
+   If your JSX contains a separate icon, keep it
+   outside the input. This prevents it from overlapping.
+========================================================= */
+
+.search-wrapper {
+  position: relative;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+.search-wrapper input {
+  width: 100%;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.error {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 20px auto;
+
+  padding: 14px 16px;
+
+  background: #fee2e2;
+
+  color: #b91c1c;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 8px;
+
+  text-align: center;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.product-grid {
+  width: 90%;
+  max-width: 1400px;
+
+  margin: 0 auto 40px;
+
+  display: grid;
+
+  /*
+     IMPORTANT:
+     4 products in one row
+  */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 24px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.product-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  background: white;
+
+  border: 1px solid #dce5e2;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.07);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/*
+   Only move the CARD slightly.
+
+   IMPORTANT:
+   We do NOT scale the image.
+   This prevents product images from being cut.
+*/
+
+.product-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE CONTAINER
+========================================================= */
+
+.product-image-container {
+  width: 100%;
+
+  height: 340px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #f1f5f3;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.product-image-container img,
+.product-card img,
+.product-image {
+  width: 100% !important;
+
+  height: 100% !important;
+
+  display: block;
+
+  /*
+     VERY IMPORTANT
+
+     contain = entire product image stays visible
+     cover = image can be cropped
+
+     We use contain.
+  */
+
+  object-fit: contain !important;
+
+  object-position: center center !important;
+
+  background: #f1f5f3;
+
+  /*
+     Prevent old CSS from enlarging the image.
+  */
+
+  transform: none !important;
+
+  transition: none !important;
+}
+
+
+/*
+   IMPORTANT:
+   Never scale the image on hover.
+*/
+
+.product-card:hover .product-image-container img,
+.product-card:hover .product-image {
+  transform: none !important;
+}
+
+
+/* =========================================================
+   FAVORITE / STAR BUTTON
+========================================================= */
+
+.favorite-button {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: white;
+
+  color: #64748b;
+
+  font-size: 20px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08);
+
+  z-index: 5;
+}
+
+.favorite-button:hover {
+  color: #0f766e;
+}
+
+
+/* =========================================================
+   PRODUCT CARD CONTENT
+========================================================= */
+
+.product-card-content {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  padding: 18px 20px 20px;
+
+  background: white;
+}
+
+
+/* =========================================================
+   CATEGORY BADGE
+========================================================= */
+
+.product-card-content .category,
+.product-category {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  padding: 5px 11px;
+
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+
+  background: #e5f3ef;
+
+  color: #00796b;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PRODUCT TITLE
+========================================================= */
+
+.product-card h3 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   PRODUCT DESCRIPTION
+========================================================= */
+
+.product-card p {
+  margin: 0;
+
+  color: #52616f;
+
+  font-size: 14px;
+
+  line-height: 1.45;
+}
+
+
+/*
+   If your description uses a specific class,
+   this keeps it from making the cards different heights.
+*/
+
+.product-description {
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 2;
+
+  line-clamp: 2;
+
+  overflow: hidden;
+
+  margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   PRICE + RATING
+========================================================= */
+
+.product-price-rating {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: auto;
+
+  padding-top: 14px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+
+/* Price */
+
+.product-price {
+  color: #111827;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+
+/* Rating */
+
+.product-rating {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: #e58a00;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   VIEW DETAILS BUTTON
+========================================================= */
+
+.view-details-button {
+  width: 100%;
+
+  height: 48px;
+
+  margin-top: 14px;
+
+  border: 1px solid #d5dfdc;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #00695c;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.view-details-button:hover {
+  background: #f0fdfa;
+
+  border-color: #0f766e;
+
+  color: #00695c;
+}
+
+
+/*
+   If your button is simply:
+
+   <button>View Details</button>
+
+   inside product-card-content, this also styles it.
+*/
+
+.product-card-content > button {
+  width: 100%;
+
+  min-height: 48px;
+
+  margin-top: 14px;
+
+  border: 1px solid #d5dfdc;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #00695c;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.product-card-content > button:hover {
+  background: #f0fdfa;
+
+  border-color: #0f766e;
+
+  color: #00695c;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  width: 90%;
+
+  max-width: 1200px;
+
+  margin: 35px auto 50px;
+}
+
+.pagination button {
+  min-width: 40px;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 7px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 14px;
+}
+
+.pagination button:hover {
+  background: #0f766e;
+
+  color: white;
+
+  border-color: #0f766e;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  min-height: 250px;
+
+  padding: 60px;
+
+  color: #0f766e;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.6);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+  width: 90%;
+
+  max-width: 600px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 25px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   MODAL IMAGE
+========================================================= */
+
+.modal img {
+  width: 100%;
+
+  max-height: 350px;
+
+  display: block;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  margin: 0 auto 20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .product-image-container {
+    height: 300px;
+  }
+
+  .filters {
+    width: 92%;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .header {
+    padding: 35px 20px 90px;
+  }
+
+  .header h1 {
+    font-size: 36px;
+  }
+
+  .filters {
+    width: 92%;
+
+    flex-wrap: wrap;
+  }
+
+  .filters input,
+  .filters select {
+    flex: 1 1 30%;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+  }
+
+  .product-image-container {
+    height: 280px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .header {
+    padding: 30px 16px 80px;
+  }
+
+  .header h1 {
+    font-size: 30px;
+
+    line-height: 1.2;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .filters {
+    width: 92%;
+
+    margin-top: -40px;
+
+    padding: 14px;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+
+    border-radius: 14px;
+  }
+
+  .filters input,
+  .filters select {
+    width: 100%;
+
+    flex: none;
+
+    height: 48px;
+  }
+
+  .product-grid {
+    width: 92%;
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .product-image-container {
+    height: 300px;
+  }
+
+  .product-card-content {
+    padding: 16px;
+  }
+
+  .product-card h3 {
+    font-size: 17px;
+  }
+
+  .product-card p {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .header h1 {
+    font-size: 27px;
+  }
+
+  .product-grid {
+    width: 94%;
+  }
+
+  .product-image-container {
+    height: 270px;
+  }
+
+  .product-card-content {
+    padding: 15px;
+  }
+}
+/* =========================================================
+   PRODUCT CARD CONTENT
+========================================================= */
+
+.product-card-content {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  padding: 18px 20px 20px;
+
+  background: white;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.product-category,
+.product-card-content .category {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  padding: 5px 11px;
+
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+
+  background: #e5f3ef;
+
+  color: #00796b;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PRODUCT TITLE
+========================================================= */
+
+.product-card h3 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  /*
+     Keep the title on one line when possible.
+  */
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   PRODUCT DESCRIPTION
+========================================================= */
+
+.product-card p {
+  margin: 0;
+
+  color: #52616f;
+
+  font-size: 15px;
+
+  line-height: 1.45;
+
+  /*
+     Show maximum 2 lines.
+  */
+
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 2;
+
+  line-clamp: 2;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   PRICE + RATING
+========================================================= */
+
+.product-price-rating {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: auto;
+
+  padding-top: 14px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+
+.product-price {
+  color: #111827;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+
+.product-rating {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: #e58a00;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   VIEW DETAILS BUTTON
+========================================================= */
+
+.view-details-button {
+  width: 100%;
+
+  height: 48px;
+
+  margin-top: 14px;
+
+  border: 1px solid #d5dfdc;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #00695c;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.view-details-button:hover {
+  background: #f0fdfa;
+
+  border-color: #0f766e;
+
+  color: #00695c;
+}
+
+
+/* If your button does not have a class */
+
+.product-card-content > button {
+  width: 100%;
+
+  min-height: 48px;
+
+  margin-top: 14px;
+
+  border: 1px solid #d5dfdc;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #00695c;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.product-card-content > button:hover {
+  background: #f0fdfa;
+
+  border-color: #0f766e;
+
+  color: #00695c;
+}
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7f6;
+  color: #111827;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  background: linear-gradient(
+    135deg,
+    #172554,
+    #2563eb
+  );
+
+  color: white;
+
+  padding: 30px 30px 90px;
+
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.header p {
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+
+/* =========================================
+   FILTER AREA
+========================================= */
+
+.filters {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: -45px auto 35px;
+
+  padding: 20px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+
+  grid-template-columns:
+    1.5fr 1fr 1fr;
+
+  gap: 16px;
+
+  position: relative;
+
+  z-index: 10;
+}
+
+
+/* =========================================
+   SEARCH INPUT
+========================================= */
+
+.filters input {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 16px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  outline: none;
+
+  /* Important:
+     prevents any icon/background
+     from appearing inside input */
+  background-image: none !important;
+}
+
+.filters input::placeholder {
+  color: #6b7280;
+}
+
+.filters input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================
+   SELECT BOXES
+========================================= */
+
+.filters select {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+.filters select:focus {
+  border-color: #2563eb;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 20px auto;
+
+  padding: 15px;
+
+  background: #fee2e2;
+
+  color: #b91c1c;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 8px;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   PRODUCT GRID
+
+   IMPORTANT:
+   3 COLUMNS
+   4 ROWS WHEN THERE ARE 12 PRODUCTS
+========================================= */
+
+.product-grid {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.product-card {
+  background: white;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  border: 1px solid #dfe5e3;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================
+   PRODUCT IMAGE
+
+   Important:
+   - No cropping
+   - Image remains fully visible
+========================================= */
+
+.product-card img {
+  width: 100%;
+
+  height: 280px;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  background: #f7f9f8;
+
+  display: block;
+
+  padding: 10px;
+}
+
+
+/* =========================================
+   PRODUCT CONTENT
+========================================= */
+
+.product-card-content {
+  padding: 18px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.product-card-content .category,
+.product-card .category {
+  display: inline-block;
+
+  width: fit-content;
+
+  padding: 5px 11px;
+
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+
+  background: #e5f4f0;
+
+  color: #087f70;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =========================================
+   PRODUCT TITLE
+========================================= */
+
+.product-card h3 {
+  font-size: 19px;
+
+  line-height: 1.3;
+
+  margin-bottom: 9px;
+
+  color: #111827;
+
+  /* Do NOT force tiny height */
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 2;
+
+  line-clamp: 2;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   PRODUCT DESCRIPTION
+========================================= */
+
+.product-card p {
+  color: #526174;
+
+  font-size: 15px;
+
+  line-height: 1.5;
+
+  margin-bottom: 14px;
+
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 3;
+
+  line-clamp: 3;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   PRICE + RATING
+========================================= */
+
+.product-card-price {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-top: auto;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #e5e7eb;
+
+  margin-bottom: 14px;
+}
+
+.product-card-price strong {
+  font-size: 20px;
+
+  color: #111827;
+}
+
+.product-card-rating {
+  color: #e58a00;
+
+  font-size: 14px;
+
+  background: #fffaf0;
+
+  border: 1px solid #f6df9b;
+
+  padding: 6px 10px;
+
+  border-radius: 8px;
+}
+
+
+/* =========================================
+   VIEW DETAILS BUTTON
+========================================= */
+
+.product-card button {
+  width: 100%;
+
+  height: 46px;
+
+  border: 1px solid #d1dedb;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #00796b;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.product-card button:hover {
+  background: #00796b;
+
+  color: white;
+
+  border-color: #00796b;
+}
+
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.pagination {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 35px auto 50px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.pagination button {
+  min-width: 42px;
+
+  height: 42px;
+
+  padding: 0 13px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #111827;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #087f70;
+
+  color: white;
+
+  border-color: #087f70;
+}
+
+.pagination button.active {
+  background: #087f70;
+
+  color: white;
+
+  border-color: #087f70;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+.pagination span {
+  padding: 0 4px;
+
+  color: #555;
+}
+
+
+/* =========================================
+   LOADER
+========================================= */
+
+.loader {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 60px;
+
+  font-size: 18px;
+
+  color: #087f70;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: 90%;
+
+  max-width: 600px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 25px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .product-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .header {
+    padding: 30px 20px 70px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .filters {
+    width: 92%;
+
+    margin-top: -35px;
+
+    padding: 15px;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .product-grid {
+    width: 92%;
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .product-card img {
+    height: 260px;
+  }
+
+  .pagination {
+    gap: 6px;
+  }
+
+  .pagination button {
+    min-width: 38px;
+
+    height: 38px;
+
+    padding: 0 10px;
+  }
+}
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7f6;
+  color: #111827;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  background: linear-gradient(
+    135deg,
+    #172554,
+    #2563eb
+  );
+
+  color: white;
+
+  padding: 30px 30px 90px;
+
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.header p {
+  font-size: 16px;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.filters {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: -45px auto 35px;
+
+  padding: 20px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+
+  grid-template-columns:
+    1.5fr 1fr 1fr;
+
+  gap: 16px;
+
+  position: relative;
+
+  z-index: 10;
+}
+
+
+/* =========================================
+   SEARCH INPUT
+========================================= */
+
+.filters input {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 16px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  background: white;
+
+  font-size: 16px;
+
+  color: #111827;
+
+  outline: none;
+
+  /* Removes search icon */
+  background-image: none !important;
+}
+
+.filters input::before {
+  display: none;
+}
+
+.filters input::placeholder {
+  color: #6b7280;
+}
+
+.filters input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 2px rgba(
+      37,
+      99,
+      235,
+      0.12
+    );
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+.filters select {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.filters select:focus {
+  border-color: #2563eb;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 20px auto;
+
+  padding: 15px;
+
+  background: #fee2e2;
+
+  color: #b91c1c;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 8px;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   PRODUCT GRID
+
+   THIS IS THE IMPORTANT PART
+
+   3 COLUMNS
+========================================= */
+
+.product-grid {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.product-card {
+  background: white;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  border: 1px solid #dfe5e3;
+
+  box-shadow:
+    0 4px 12px rgba(
+      0,
+      0,
+      0,
+      0.08
+    );
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+
+/* =========================================
+   IMAGE CONTAINER
+========================================= */
+
+.product-image-container {
+  width: 100%;
+
+  height: 280px;
+
+  background: #f7f9f8;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   PRODUCT IMAGE
+
+   CONTAIN = NO CUTTING
+========================================= */
+
+.product-image-container img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  display: block;
+
+  padding: 12px;
+}
+
+
+/* =========================================
+   PRODUCT CONTENT
+========================================= */
+
+.product-card-content {
+  padding: 18px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.category {
+  display: inline-block;
+
+  width: fit-content;
+
+  padding: 5px 11px;
+
+  margin-bottom: 10px;
+
+  border-radius: 20px;
+
+  background: #e5f4f0;
+
+  color: #087f70;
+
+  font-size: 12px;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =========================================
+   TITLE
+
+   Allows 2 lines
+========================================= */
+
+.product-card h3 {
+  font-size: 19px;
+
+  line-height: 1.35;
+
+  margin-bottom: 9px;
+
+  color: #111827;
+
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 2;
+
+  line-clamp: 2;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   DESCRIPTION
+
+   Allows 3 lines
+========================================= */
+
+.product-card p {
+  color: #526174;
+
+  font-size: 15px;
+
+  line-height: 1.5;
+
+  margin-bottom: 14px;
+
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 3;
+
+  line-clamp: 3;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   PRICE + RATING
+========================================= */
+
+.product-card-price {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-top: auto;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #e5e7eb;
+
+  margin-bottom: 14px;
+}
+
+.product-card-price strong {
+  font-size: 20px;
+
+  color: #111827;
+}
+
+.product-card-rating {
+  color: #e58a00;
+
+  font-size: 14px;
+
+  background: #fffaf0;
+
+  border: 1px solid #f6df9b;
+
+  padding: 6px 10px;
+
+  border-radius: 8px;
+}
+
+
+/* =========================================
+   VIEW DETAILS
+========================================= */
+
+.product-card button {
+  width: 100%;
+
+  height: 46px;
+
+  border: 1px solid #d1dedb;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #00796b;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  background: #00796b;
+
+  color: white;
+
+  border-color: #00796b;
+}
+
+
+/* =========================================
+   NO PRODUCTS
+========================================= */
+
+.no-products {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 50px auto;
+
+  text-align: center;
+
+  font-size: 18px;
+
+  color: #6b7280;
+}
+
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.pagination {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 35px auto 50px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.pagination button {
+  min-width: 42px;
+
+  height: 42px;
+
+  padding: 0 13px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #111827;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #087f70;
+
+  color: white;
+
+  border-color: #087f70;
+}
+
+.pagination button.active {
+  background: #087f70;
+
+  color: white;
+
+  border-color: #087f70;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+.pagination span {
+  padding: 0 4px;
+
+  color: #555;
+}
+
+
+/* =========================================
+   LOADER
+========================================= */
+
+.loader {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 60px;
+
+  font-size: 18px;
+
+  color: #087f70;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(
+    0,
+    0,
+    0,
+    0.6
+  );
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: 90%;
+
+  max-width: 600px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 25px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .product-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .header {
+    padding: 30px 20px 70px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+  }
+
+  .filters {
+    width: 92%;
+
+    grid-template-columns: 1fr;
+
+    padding: 15px;
+  }
+
+  .product-grid {
+    width: 92%;
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .product-image-container {
+    height: 260px;
+  }
+
+  .pagination {
+    gap: 6px;
+  }
+
+  .pagination button {
+    min-width: 38px;
+
+    height: 38px;
+  }
+}
+/* View Details button */
+.view-details-btn {
+  width: 100%;
+  height: 48px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.view-details-btn:hover {
+  background: #1d4ed8;
+}
+
+
+/* Pagination */
+.pagination button {
+  min-width: 48px;
+  height: 42px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background: white;
+  color: #111827;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+
+/* Active page */
+.pagination button.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.pagination button.active:hover {
+  background: #1d4ed8;
+  color: white;
+}
+
+
+/* Previous / Next */
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.view-details-btn {
+  width: 100%;
+  height: 48px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.view-details-btn:hover {
+  background: #1d4ed8;
+}
+.product-card button {
+  width: 100%;
+  padding: 10px 16px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+
+  background: white;
+  color: #00796b;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.product-card button:hover {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+.product-card button {
+  width: 100%;
+  padding: 10px 16px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+
+  background: white;
+  color: #2563eb;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.product-card button:hover {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  background: #f4f6f9;
+  color: #222;
+}
