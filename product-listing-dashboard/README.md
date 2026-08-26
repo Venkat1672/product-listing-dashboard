@@ -4,7 +4,7 @@ A React-based product listing dashboard using the DummyJSON REST API.
 
 ## 🚀 Live Demo
 
-👉 [View Live Project](https://product-listing-dashboard-vercel.vercel.app)
+👉 [View Live Project](https://product-listing-dashboard-5wuo.vercel.app/)
 
 ## Features
 
